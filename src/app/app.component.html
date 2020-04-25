@@ -1,0 +1,195 @@
+ <div class="pt-3"> 
+<div class="container pt-5">
+	<div class="application__wrapper mt-5">
+		<div class="application__wrapper__item bg-light shadow rounded"
+			*ngFor="let item of applicationData; let i = index">
+			<input
+        type="checkbox"
+        id="{{ 'application-item-' + i }}"
+        class="d-none"
+      />
+			<div class="application__wrapper__all rounded">
+				<div class="application__wrapper__topbar px-3 py-2 d-flex flex-column flex-md-row">
+					<ul class="list-inline mb-0">
+						<li class="list-inline-item mr-3">
+							<b> Program Name: </b>
+							<span class="text-primary"> {{ item.programName }}</span>
+						</li>
+						<li class="list-inline-item mr-3">
+							<b> App No: </b>
+							<span class="text-primary"> {{ item.appNo }} </span>
+						</li>
+					</ul>
+					<ul class="list-inline mb-0 ml-md-auto ml-sm-0 flex-sm-column">
+						<li class="list-inline-item mr-3">
+							<fa-icon [icon]="faCalendarAlt" class=" text-muted mr-1"></fa-icon>
+							<strong>{{ item.submittedDate }}</strong>
+						</li>
+						<li class="list-inline-item mr-3">
+							<span
+                class="badge badge-secondary mr-1"
+                [ngClass]="{
+                  'badge-secondary': item.status == 'Interview Missed',
+                  'badge-success': item.status == 'Approved',
+                  'badge-warning': item.status == 'Withdrawn',
+                  'badge-danger': item.status == 'Rejected'
+                }"
+                >{{item.status.toString().slice(0, 1)}}</span>
+							<span
+                class=""
+                [ngClass]="{
+                  'text-secondary': item.status == 'Interview Missed',
+                  'text-success': item.status == 'Approved',
+                  'text-warning': item.status == 'Withdrawn',
+                  'text-danger': item.status == 'Rejected'
+                }"
+                >{{ item.status }}
+              </span>
+						</li>
+						<li class="list-inline-item current-progress">
+							<div class="d-flex align-items-center">
+								<fa-icon [icon]="faChartBar" class=" text-muted mr-1"></fa-icon>
+								<div class="progress" style="width: 100px;">
+									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" class="progress-bar"
+										[ngClass]="{
+                      'bg-danger':
+                        item.progressPercentage >= 0 &&
+                        item.progressPercentage <= 24,
+                      'bg-warning':
+                        item.progressPercentage >= 25 &&
+                        item.progressPercentage <= 49,
+                      'bg-primary':
+                        item.progressPercentage >= 50 &&
+                        item.progressPercentage <= 74,
+                      'bg-success':
+                        item.progressPercentage >= 75 &&
+                        item.progressPercentage <= 100
+                    }" role="progressbar" [style.width.%]="item.progressPercentage"></div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="application__wrapper__middle p-3">
+					<div class="itemHead mb-0 d-flex flex-column flex-sm-row">
+						<div class="itemPic">
+							<label for="{{ 'application-item-' + i }}">
+                <div class="img-chk">
+                  <img
+                    alt="Jess Hofner"
+                    src="{{'https://i.pravatar.cc/150?img='+i}}"
+                  />
+                  <span class="cls-eligibility" *ngIf="item.eligibility">
+                    <span
+                      class="badge"
+                      [ngClass]="{
+                        'badge-danger': item.eligibility == 'Not Eligible',
+                        'badge-success': item.eligibility == 'Eligible'
+                      }"
+                    >
+                     <fa-icon [icon]="faInfo"></fa-icon>
+                      <small class="ml-1">{{ item.eligibility }}</small>
+                    </span>
+                  </span>
+                </div>
+                <span class="opp-check">
+                  	<fa-icon [icon]="faCheck"></fa-icon>
+                </span>
+              </label>
+						</div>
+						<div class="mr-2">
+							<div class="">
+								<ul class="list-inline mb-0 font-weight-bold">
+									<li class="list-inline-item">
+										{{ item.applicationId }}
+									</li>
+									<li class="list-inline-item">
+									<small class="dots"><fa-icon [icon]="faCircle"></fa-icon></small>
+										{{ item.applicantNameEng }}
+									</li>
+									<li class="list-inline-item">
+										<small class="dots"><fa-icon [icon]="faCircle"></fa-icon></small>
+										{{ item.applicantNameUrdu }}
+									</li>
+								</ul>
+								<ul class="list-inline mb-0 text-muted">
+									<li class="list-inline-item">
+										{{ item.emailId }}
+									</li>
+									<li class="list-inline-item">
+										<small class="dots"> <fa-icon [icon]="faCircle"></fa-icon></small>
+										{{ item.phoneNo }}
+									</li>
+									<li class="list-inline-item">
+										<small class="dots"><fa-icon [icon]="faCircle"></fa-icon></small>
+										{{ item.documentId }}
+									</li>
+									<li class="list-inline-item">
+										<small class="dots"><fa-icon [icon]="faCircle"></fa-icon></small>
+										{{ item.gender }}
+									</li>
+									<li class="list-inline-item">
+										<small class="dots"><fa-icon [icon]="faCircle"></fa-icon></small>
+										{{ item.age }}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="application__wrapper__bottombar px-3 py-2 d-flex">
+					<div class="mr-auto align-self-center">
+						<div class="text-primary">
+							<fa-icon [icon]="faComment" clas="mt-1 mr-1"></fa-icon>
+							{{ item.commentsCount }} Comments
+						</div>
+					</div>
+					<div class="reviewer-zone ml-auto d-flex">
+						<div class="avatar-group">
+							<div class="d-flex">
+								<div class="avatar mr-2">
+									<img
+                   src="{{'https://i.pravatar.cc/150?img='+i+1}}"
+                  />
+                </div>
+									<div class="reviewer__details">
+										<p class="mb-0">Assigned To</p>
+										<strong class="">{{ item.assignedTo }}</strong>
+									</div>
+								</div>
+							</div>
+							<div class="avatar-group ml-4">
+								<div class="d-flex">
+									<div class="avatar mr-2">
+										<img
+                    src="{{'https://i.pravatar.cc/150?img='+i+2}}"
+                  />
+										<span class="badge badge-red">
+                    <i class="fa fa-award"></i
+                  ></span>
+									</div>
+									<div class="reviewer__details">
+										<p class="mb-0">Reviewer</p>
+										<strong class="">{{ item.reviewerName }}</strong>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<nav class="navbar navbar-dark bg-dark fixed-top">
+		<div class="navbar-expand m-auto navbar-text">
+			Made with <fa-icon [icon]="faHeart" style="color: hotpink;"></fa-icon> by Amit Vishwakarma
+			
+			<p class="text-center mb-0">
+         <a
+				href="https://www.linkedin.com/in/amitvishwakarma1992/">Linkedin</a>
+        &nbsp;
+				<a href="https://www.instagram.com/_im_infinite/">Instagram</a>
+			</p>
+		</div>
+	</nav>

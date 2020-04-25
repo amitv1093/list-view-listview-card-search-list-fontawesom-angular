@@ -1,0 +1,137 @@
+.application__wrapper {
+  &__item {
+    margin-bottom: 15px;
+
+    &:hover {
+      .cls-eligibility {
+        small {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    input[type="checkbox"] {
+      &:checked + .application__wrapper__all {
+        border: 2px solid #007bff;
+        .opp-check {
+          display: inline-block;
+        }
+        .img-chk {
+          display: none;
+        }
+      }
+    }
+  }
+  &__topbar {
+    border-bottom: 1px solid #ddd;
+
+    .current-progress {
+      .progress {
+        height: 7px;
+        margin-top: 3px;
+      }
+    }
+  }
+
+  &__middle {
+    .dots {
+      font-size: 5px;
+      display: inline-block;
+      width: 10px;
+      text-align: center;
+      vertical-align: middle;
+      color: #adadad;
+    }
+
+    .itemHead {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+
+    .itemPic {
+      width: 3.66rem;
+      height: 3.66rem;
+      border-radius: 5px;
+      // overflow: hidden;
+      background-color: #f2f4f8;
+      text-align: center;
+      vertical-align: middle;
+      margin-right: 1.33rem;
+      flex-shrink: 0;
+      align-self: flex-start;
+      position: relative;
+      .opp-check {
+        display: none;
+        width: 3.66rem;
+        height: 3.66rem;
+        text-align: center;
+        line-height: 50px;
+        background: #007bff;
+        color: #fff;
+        font-size: 25px;
+        border-radius: 5px;
+      }
+      .cls-eligibility {
+        position: absolute;
+        top: -12px;
+        left: 2.98rem;
+        border: 1px solid #fff;
+        line-height: 15px;
+        border-radius: 0.25rem;
+        .badge {
+          min-width: 20px;
+        }
+        small {
+          display: none;
+        }
+      }
+    }
+
+    .itemPic img {
+      width: 100%;
+      height: auto;
+      background-color: #ddd;
+      border-radius: 5px;
+      &:hover
+      {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__bottombar {
+    border-top: 1px solid #ddd;
+
+    .reviewer-zone {
+      .avatar-group {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        .avatar {
+          border: 3px solid #fff;
+          flex-shrink: 0;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          overflow: hidden;
+          background-color: #f2f4f8;
+          text-align: center;
+          vertical-align: middle;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        .reviewer__details {
+          p {
+            font-size: 12px;
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
+}
